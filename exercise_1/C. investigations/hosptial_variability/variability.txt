@@ -1,0 +1,43 @@
+
+hive> ;select hid, count(hid) as c from qual group by hid order by c desc limit 10;
+Query ID = root_20151019050303_8dadb54e-b8a9-461d-907e-39c081ac1860
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-10-19 05:03:49,546 Stage-1 map = 0%,  reduce = 0%
+2015-10-19 05:03:50,552 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_local1837720992_0005
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-10-19 05:03:51,983 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_local487220614_0006
+MapReduce Jobs Launched:
+Stage-Stage-1:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Stage-Stage-2:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+170123  51
+180018  51
+450237  51
+040118  51
+260020  51
+020012  51
+450388  51
+030064  51
+050104  51
+030065  51
+Time taken: 4.107 seconds, Fetched: 10 row(s)

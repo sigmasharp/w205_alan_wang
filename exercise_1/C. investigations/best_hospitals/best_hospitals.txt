@@ -1,0 +1,56 @@
+ID      Overall_Score           Hospital Name
+140300  9.926157223758112       PROVIDENT HOSPITAL OF CHICAGO
+400013  9.891705878975886       HOSPITAL MENONITA DE CAYEY
+050138  9.736674827455866       KAISER FOUNDATION HOSPITAL - LOS ANGELES
+330395  9.684997810282526       ST JOHN'S EPISCOPAL HOSPITAL AT SOUTH SHORE
+100001  9.59886944832696        UF HEALTH JACKSONVILLE
+140068  9.581643775935847       ROSELAND COMMUNITY HOSPITAL
+050320  9.564418103544734       HIGHLAND HOSPITAL
+050040  9.564418103544734       LAC/OLIVE VIEW-UCLA MEDICAL CENTER
+330043  9.49551541398028        SOUTHSIDE HOSPITAL
+050300  9.49551541398028        ST MARY MEDICAL CENTER
+
+What I did was to combine and standardize all measurements, INCLUDING the survey which is outside from the measurements.
+Since I am using the z-score to put all otherwise variant measurements in to one.  For this project it is quite applicable
+and yielding make-sense results.  Please refer to the 'transform' sql script to see how this is achieved.
+
+The hive log:
+hive> select hosp.hid, qul, hnm from qual, hosp where qual.hid = hosp.hid and qul is not null order by qul desc limit 10;
+Query ID = root_20151019052525_ceadc80c-343d-47f3-8be9-a645f2219292
+Total jobs = 1
+Execution log at: /tmp/root/root_20151019052525_ceadc80c-343d-47f3-8be9-a645f2219292.log
+2015-10-19 05:25:52     Starting to launch local task to process map join;      maximum memory = 1013645312
+2015-10-19 05:25:54     Dump the side-table for tag: 1 with group count: 4824 into file: file:/tmp/root/524674ef-953d-4678-a8bb-41f2ea4dc753/hive_2015-10-19_05-25-39_818_472038470392338899-1/-local-10004/HashTable-Stage-2/MapJoin-mapfile11--.hashtable
+2015-10-19 05:25:55     Uploaded 1 File to: file:/tmp/root/524674ef-953d-4678-a8bb-41f2ea4dc753/hive_2015-10-19_05-25-39_818_472038470392338899-1/-local-10004/HashTable-Stage-2/MapJoin-mapfile11--.hashtable (262904 bytes)
+2015-10-19 05:25:55     End of local task; Time Taken: 2.901 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-10-19 05:25:57,586 Stage-2 map = 0%,  reduce = 0%
+2015-10-19 05:26:00,595 Stage-2 map = 100%,  reduce = 0%
+2015-10-19 05:26:01,619 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_local193752623_0008
+MapReduce Jobs Launched:
+Stage-Stage-2:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+140300  9.926157223758112       PROVIDENT HOSPITAL OF CHICAGO
+400013  9.891705878975886       HOSPITAL MENONITA DE CAYEY
+050138  9.736674827455866       KAISER FOUNDATION HOSPITAL - LOS ANGELES
+330395  9.684997810282526       ST JOHN'S EPISCOPAL HOSPITAL AT SOUTH SHORE
+100001  9.59886944832696        UF HEALTH JACKSONVILLE
+140068  9.581643775935847       ROSELAND COMMUNITY HOSPITAL
+050320  9.564418103544734       HIGHLAND HOSPITAL
+050040  9.564418103544734       LAC/OLIVE VIEW-UCLA MEDICAL CENTER
+330043  9.49551541398028        SOUTHSIDE HOSPITAL
+050300  9.49551541398028        ST MARY MEDICAL CENTER
+Time taken: 21.818 seconds, Fetched: 10 row(s)
+hive>

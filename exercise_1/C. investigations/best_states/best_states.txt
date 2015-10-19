@@ -1,0 +1,67 @@
+
+
+hive> select stt, sum(qul) as s from qual, hosp where qual.hid = hosp.hid group by stt order by s desc limit 10;
+Query ID = root_20151019044545_22729b3a-bd77-4f16-9fe4-2565604a4727
+Total jobs = 2
+Execution log at: /tmp/root/root_20151019044545_22729b3a-bd77-4f16-9fe4-2565604a4727.log
+2015-10-19 04:45:43     Starting to launch local task to process map join;      maximum memory = 1013645312
+2015-10-19 04:45:45     Dump the side-table for tag: 1 with group count: 4824 into file: file:/tmp/root/b1ca56a9-e791-4f5c-ac5b-d019dd1fcd7c/hive_2015-10-19_04-45-30_452_8681233809503718580-1/-local-10005/HashTable-Stage-2/MapJoin-mapfile01--.hashtable
+2015-10-19 04:45:45     Uploaded 1 File to: file:/tmp/root/b1ca56a9-e791-4f5c-ac5b-d019dd1fcd7c/hive_2015-10-19_04-45-30_452_8681233809503718580-1/-local-10005/HashTable-Stage-2/MapJoin-mapfile01--.hashtable (136482 bytes)
+2015-10-19 04:45:45     End of local task; Time Taken: 2.845 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+State   Overall Score
+CA      3729.147674728179
+FL      2545.251618883688
+NY      2285.3262090787225
+PA      1516.041332869679
+NJ      1398.328067370008
+NC      929.0903874530013
+OH      819.7003277002075
+VA      808.9673027186925
+IL      805.9726711018059
+MA      774.9471136417026
+  
+Here we can see it is quite proportional to the actural size of the state. 
+  
+  In order to set a constant number of reducers:
+set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-10-19 04:45:48,452 Stage-2 map = 0%,  reduce = 0%
+2015-10-19 04:45:52,492 Stage-2 map = 100%,  reduce = 0%
+2015-10-19 04:45:53,508 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_local925259556_0003
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-10-19 04:45:55,106 Stage-3 map = 100%,  reduce = 100%
+Ended Job = job_local443708820_0004
+MapReduce Jobs Launched:
+Stage-Stage-2:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Stage-Stage-3:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+CA      3729.147674728179
+FL      2545.251618883688
+NY      2285.3262090787225
+PA      1516.041332869679
+NJ      1398.328067370008
+NC      929.0903874530013
+OH      819.7003277002075
+VA      808.9673027186925
+IL      805.9726711018059
+MA      774.9471136417026
+Time taken: 24.661 seconds, Fetched: 10 row(s)
+hive>

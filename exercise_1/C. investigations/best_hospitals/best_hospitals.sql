@@ -1,0 +1,1 @@
+select hosp.hid, qul, hnm from qual, hosp where qual.hid = hosp.hid and qul is not null order by qul desc limit 10;
