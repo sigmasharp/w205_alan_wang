@@ -1,0 +1,93 @@
+Here I am comparing the combined quality score, which is the overall standardized measurements (including the survey)
+to the existing score included in the survey and find out the correlation is not obvious.
+
+Query ID = root_20151019055252_45769f39-14ec-41f6-b6ef-4c6e6b19351e
+Total jobs = 2
+Execution log at: /tmp/root/root_20151019055252_45769f39-14ec-41f6-b6ef-4c6e6b19351e.log
+2015-10-19 05:52:26     Starting to launch local task to process map join;      maximum memory = 1013645312
+2015-10-19 05:52:28     Dump the side-table for tag: 0 with group count: 3074 into file: file:/tmp/root/59f566e9-fc10-4bbe-a412-cc332afdf3a0/hive_2015-10-19_05-52-10_619_6499187418530205905-1/-local-10005/HashTable-Stage-2/MapJoin-mapfile00--.hashtable
+2015-10-19 05:52:29     Uploaded 1 File to: file:/tmp/root/59f566e9-fc10-4bbe-a412-cc332afdf3a0/hive_2015-10-19_05-52-10_619_6499187418530205905-1/-local-10005/HashTable-Stage-2/MapJoin-mapfile00--.hashtable (83663 bytes)
+2015-10-19 05:52:29     End of local task; Time Taken: 2.821 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-10-19 05:52:35,155 Stage-2 map = 0%,  reduce = 0%
+2015-10-19 05:52:42,282 Stage-2 map = 100%,  reduce = 0%
+2015-10-19 05:52:44,393 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_local1674325674_0001
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Job running in-process (local Hadoop)
+2015-10-19 05:52:46,811 Stage-3 map = 100%,  reduce = 0%
+2015-10-19 05:52:47,818 Stage-3 map = 100%,  reduce = 100%
+Ended Job = job_local2105992196_0002
+MapReduce Jobs Launched:
+Stage-Stage-2:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Stage-Stage-3:  HDFS Read: 0 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+OK
+310002  47.202226883764986      0       576
+330202  45.892559011880195      0       48
+450289  40.31178567059962       384     672
+330101  39.11832612593226       357     816
+050060  39.00263456887501       672     624
+050292  36.57364250500798       240     288
+330306  36.418783710208025      192     336
+330128  36.349536507203446      144     336
+330141  36.31508516242122       336     336
+330056  35.91906695414568       912     528
+320001  35.74261110743425       306     663
+220100  35.71201437201219       1968    960
+450213  35.63908481636751       612     714
+050327  35.17347489164727       306     663
+180067  34.1575047340117        1326    969
+330024  33.972049203789695      1008    912
+290046  33.61099911045656       288     528
+260032  33.12833577006527       1776    864
+290022  32.87029519763869       384     480
+330055  32.76676890657195       576     720
+050492  32.54317967892761       1392    960
+450024  32.25017099155862       1104    912
+050245  32.215375133336266      912     720
+100187  31.957334560909693      192     576
+260048  31.80213125266961       912     720
+050353  31.71565837727392       1392    816
+050272  31.66415361682065       1680    960
+050599  31.608105220126944      663     510
+050104  31.60776070668682       408     561
+030064  31.349720134260245      102     612
+220077  31.26359177230468       612     714
+330286  31.216630648091822      48      528
+290021  31.199404975700705      288     480
+330399  31.18235156002966       432     480
+290045  30.527086982287113      816     768
+050040  30.4588733196029        720     384
+050262  30.458701062882838      480     768
+330014  30.441130877051606      480     288
+050376  30.424421974820667      240     336
+140276  30.41953382514013       306     612
+050231  30.406507275549316      0       528
+330353  30.389453859878262      624     576
+310041  30.372228187487153      288     720
+450723  30.303153241202644      1152    768
+030024  30.165520118793793      384     816
+050056  30.131241030731623      240     624
+110064  30.114359871780636      288     672
+340050  29.99343565160272       1488    912
+330185  29.90696277620704       1440    816
+140088  29.88571023773568       561     816
+Time taken: 37.352 seconds, Fetched: 50 row(s)
