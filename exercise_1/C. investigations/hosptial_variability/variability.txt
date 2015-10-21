@@ -1,4 +1,14 @@
-
+Here I am using the measure of the total number of procedure (from all exposed measurements, including the survey)
+170123  51
+180018  51
+450237  51
+040118  51
+260020  51
+020012  51
+450388  51
+030064  51
+050104  51
+030065  51
 hive> ;select hid, count(hid) as c from qual group by hid order by c desc limit 10;
 Query ID = root_20151019050303_8dadb54e-b8a9-461d-907e-39c081ac1860
 Total jobs = 2

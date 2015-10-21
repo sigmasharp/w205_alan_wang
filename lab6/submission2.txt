@@ -1,0 +1,2 @@
+>>> sqlContext.sql('select count(*) from Web_Session_Log where REFERERUAL = "http://www.ebay.com"').collect()
+[Row(c0=3943)]
