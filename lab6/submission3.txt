@@ -1,4 +1,4 @@
 >>> result1 = sqlContext.sql('select count(*) from Web_Session_Log where REFERERUAL = "http://www.ebay.com"')
 >>> result1.show()
 c0
-3943
+3943  

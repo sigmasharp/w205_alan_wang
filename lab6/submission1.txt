@@ -23,7 +23,7 @@
 
 The 'little problem' was that the value would contain the key itself, as defined in the last x in the mapping as:
 	(lambda x: (x.plit(",")[0], x))
-	
+  	
 We need to update it to exclude the key in the value, as:
 	(lambda x: (x.plit(",")[0], x.plit(",")[1:]))
 
