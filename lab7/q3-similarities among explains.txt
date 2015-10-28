@@ -1,0 +1,71 @@
+Ans:
+Similarities:
+They are all sequential scans, because they all involved only one table in the from clause.
+
+Attachment:
+
+Query 1 with explain:
+
+dvdrental=# explain SELECT customer_id, first_name, last_name FROM customer;
+QUERY PLAN
+Seq Scan on customer  (cost=0.00..14.99 rows=599 width=17)
+(1 row)
+
+Query 2 with explain:
+
+dvdrental=# explain SELECT customer_id,
+dvdrental-#  amount,
+dvdrental-#  payment_date
+dvdrental-# FROM payment
+dvdrental-# WHERE amount <= 1 OR amount >= 8
+dvdrental-# ;
+QUERY PLAN
+Append  (cost=0.00..391.13 rows=4457 width=17)
+  ->  Seq Scan on payment  (cost=0.00..0.00 rows=1 width=22)
+        Filter: ((amount <= '1'::numeric) OR (amount >= '8'::numeric))
+  ->  Seq Scan on payment_p2007_01  (cost=0.00..26.36 rows=266 width=16)
+        Filter: ((amount <= '1'::numeric) OR (amount >= '8'::numeric))
+  ->  Seq Scan on payment_p2007_02  (cost=0.00..51.68 rows=531 width=16)
+        Filter: ((amount <= '1'::numeric) OR (amount >= '8'::numeric))
+  ->  Seq Scan on payment_p2007_03  (cost=0.00..126.66 rows=1268 width=16)
+        Filter: ((amount <= '1'::numeric) OR (amount >= '8'::numeric))
+  ->  Seq Scan on payment_p2007_04  (cost=0.00..151.31 rows=1557 width=16)
+        Filter: ((amount <= '1'::numeric) OR (amount >= '8'::numeric))
+  ->  Seq Scan on payment_p2007_05  (cost=0.00..4.73 rows=78 width=15)
+        Filter: ((amount <= '1'::numeric) OR (amount >= '8'::numeric))
+  ->  Seq Scan on payment_p2007_06  (cost=0.00..30.40 rows=756 width=22)
+        Filter: ((amount <= '1'::numeric) OR (amount >= '8'::numeric))
+(15 rows)
+
+Query 3 with explain:
+
+dvdrental=# explain SELECT
+dvdrental-#     customer_id,
+dvdrental-#     payment_id,
+dvdrental-#     amount
+dvdrental-# FROM
+dvdrental-#     payment
+dvdrental-# WHERE
+dvdrental-#     amount BETWEEN 5
+dvdrental-# AND 9
+dvdrental-#
+dvdrental-# ;
+QUERY PLAN
+Append  (cost=0.00..391.13 rows=3594 width=12)
+  ->  Seq Scan on payment  (cost=0.00..0.00 rows=1 width=18)
+        Filter: ((amount >= '5'::numeric) AND (amount <= '9'::numeric))
+  ->  Seq Scan on payment_p2007_01  (cost=0.00..26.36 rows=242 width=12)
+        Filter: ((amount >= '5'::numeric) AND (amount <= '9'::numeric))
+  ->  Seq Scan on payment_p2007_02  (cost=0.00..51.68 rows=506 width=12)
+        Filter: ((amount >= '5'::numeric) AND (amount <= '9'::numeric))
+  ->  Seq Scan on payment_p2007_03  (cost=0.00..126.66 rows=1290 width=12)
+        Filter: ((amount >= '5'::numeric) AND (amount <= '9'::numeric))
+  ->  Seq Scan on payment_p2007_04  (cost=0.00..151.31 rows=1535 width=12)
+        Filter: ((amount >= '5'::numeric) AND (amount <= '9'::numeric))
+  ->  Seq Scan on payment_p2007_05  (cost=0.00..4.73 rows=13 width=11)
+        Filter: ((amount >= '5'::numeric) AND (amount <= '9'::numeric))
+  ->  Seq Scan on payment_p2007_06  (cost=0.00..30.40 rows=7 width=18)
+        Filter: ((amount >= '5'::numeric) AND (amount <= '9'::numeric))
+(15 rows)
+
+dvdrental=#
