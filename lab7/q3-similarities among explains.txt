@@ -1,7 +1,7 @@
 Ans:
 Similarities:
 They are all sequential scans, because they all involved only one table in the from clause.
-
+ 
 Attachment:
 
 Query 1 with explain:

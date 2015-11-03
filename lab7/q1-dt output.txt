@@ -1,5 +1,5 @@
 Ans:
-
+  
 dvdrental=# \dt
 List of relations
 Schema|Name|Type|Owner

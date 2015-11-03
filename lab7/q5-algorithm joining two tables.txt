@@ -1,6 +1,6 @@
 Ans:
 It is Hash Join algorithm (hash on the payment.customer_id and customer.customer_id) that is used for the inner join.
-
+ 
 dvdrental=# explain SELECT
 dvdrental-#     customer.customer_id,
 dvdrental-#     first_name,

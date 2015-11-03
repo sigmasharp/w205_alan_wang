@@ -1,5 +1,5 @@
-Ans:
-
+Ans:   
+ 
 dvdrental=# \dcustomer
 List of conversions
 Schema|Name|Source|Destination|Default?

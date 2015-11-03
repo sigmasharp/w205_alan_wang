@@ -4,7 +4,7 @@ HashAgreegate/group keys involved in the union but only 1 layer for the partitio
 This is mainly because there are two tables involved in the union but only one in the partioned
 case. 
 
-
+ 
 
 Union Query with Explain:
 
