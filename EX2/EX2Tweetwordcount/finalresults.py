@@ -24,7 +24,7 @@ elif len(sys.argv) == 1: #without any argument
     recs = cur.fetchall()
 
     for rec in recs:
-        print "(%s, %d)\n" % (rec[0], rec[1])
+        print "(%s, %d)" % (rec[0], rec[1])
 
     if len(recs)==0:
         print "No word count records found"

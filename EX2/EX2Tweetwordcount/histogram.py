@@ -10,11 +10,11 @@ a = ''.join(sys.argv[1:]).split(',')
 
 if len(sys.argv)<=4 and len(a)==2 and a[0].isdigit and a[1].isdigit and int(a[0]) <= int(a[1]):
 
-    cur.execute("SELECT word, count FROM tweetwordcount WHERE count >= %s AND count <= %s", (a[0], a[1]))
+    cur.execute("SELECT word, count FROM tweetwordcount WHERE count >= %s AND count <= %s ORDER BY count DESC", (a[0], a[1]))
     recs = cur.fetchall()
 
     for rec in recs:
-        print "%s: %d\n" % (rec[0], rec[1])
+        print "%s: %d" % (rec[0], rec[1])
     if len(recs)==0:
         print "No such records found"
 else:
