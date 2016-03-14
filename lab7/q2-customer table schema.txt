@@ -1,0 +1,6 @@
+Ans:   
+ 
+dvdrental=# \dcustomer
+List of conversions
+Schema|Name|Source|Destination|Default?
+(0 rows)

@@ -1,0 +1,65 @@
+Ans:
+The main difference between union and partiotion from the Explains is that there are two layers of 
+HashAgreegate/group keys involved in the union but only 1 layer for the partitioned.
+This is mainly because there are two tables involved in the union but only one in the partioned
+case. 
+
+ 
+
+Union Query with Explain:
+
+dvdrental=# explain SELECT u.customer_id, sum(u.amount) from (
+dvdrental(#   SELECT *
+dvdrental(#   FROM
+dvdrental(#     payment_p2007_01
+dvdrental(#   UNION
+dvdrental(#   SELECT *
+dvdrental(#   FROM
+dvdrental(#     payment_p2007_02
+dvdrental(# ) u
+dvdrental-# WHERE u.payment_date <= '2007-02-01 00:00:00'::timestamp without tim
+e zone
+dvdrental-# GROUP BY u.customer_id
+dvdrental-# ;
+QUERY PLAN
+HashAggregate  (cost=127.26..129.76 rows=200 width=14)
+  Group Key: payment_p2007_01.customer_id
+  ->  HashAggregate  (cost=98.31..109.89 rows=1158 width=26)
+        Group Key: payment_p2007_01.payment_id, payment_p2007_01.customer_id, pa
+yment_p2007_01.staff_id, payment_p2007_01.rental_id, payment_p2007_01.amount, pa
+yment_p2007_01.payment_date
+        ->  Append  (cost=0.00..80.94 rows=1158 width=26)
+              ->  Seq Scan on payment_p2007_01  (cost=0.00..23.46 rows=1157 widt
+h=26)
+                    Filter: (payment_date <= '2007-02-01 00:00:00'::timestamp wi
+thout time zone)
+              ->  Seq Scan on payment_p2007_02  (cost=0.00..45.90 rows=1 width=2
+6)
+                    Filter: (payment_date <= '2007-02-01 00:00:00'::timestamp wi
+thout time zone)
+(9 rows)
+
+Partition Query with Explain:
+
+dvdrental=# explain SELECT customer_id, sum(amount) from
+dvdrental-# payment
+dvdrental-# WHERE payment_date <= '2007-02-01 00:00:00'::timestamp without time
+zone
+dvdrental-# GROUP BY customer_id
+dvdrental-# ;
+QUERY PLAN
+HashAggregate  (cost=75.16..77.66 rows=200 width=8)
+  Group Key: payment.customer_id
+  ->  Append  (cost=0.00..69.36 rows=1159 width=8)
+        ->  Seq Scan on payment  (cost=0.00..0.00 rows=1 width=14)
+              Filter: (payment_date <= '2007-02-01 00:00:00'::timestamp without
+time zone)
+        ->  Seq Scan on payment_p2007_01  (cost=0.00..23.46 rows=1157 width=8)
+              Filter: (payment_date <= '2007-02-01 00:00:00'::timestamp without
+time zone)
+        ->  Seq Scan on payment_p2007_02  (cost=0.00..45.90 rows=1 width=8)
+              Filter: (payment_date <= '2007-02-01 00:00:00'::timestamp without
+time zone)
+(9 rows)
+
+dvdrental=#
