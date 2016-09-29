@@ -1,0 +1,30 @@
+Ans:
+It is Hash Join algorithm (hash on the payment.customer_id and customer.customer_id) that is used for the inner join.
+ 
+dvdrental=# explain SELECT
+dvdrental-#     customer.customer_id,
+dvdrental-#     first_name,
+dvdrental-#     last_name,
+dvdrental-#     email,
+dvdrental-#
+dvdrental-#     amount,
+dvdrental-#     payment_date
+dvdrental-# FROM
+dvdrental-#     customer
+dvdrental-# INNER JOIN payment ON payment.customer_id = customer.customer_id;
+QUERY PLAN
+Hash Join  (cost=22.48..565.95 rows=17410 width=63)
+  Hash Cond: (payment.customer_id = customer.customer_id)
+  ->  Append  (cost=0.00..304.09 rows=17410 width=16)
+        ->  Seq Scan on payment  (cost=0.00..0.00 rows=1 width=22)
+        ->  Seq Scan on payment_p2007_01  (cost=0.00..20.57 rows=1157 width=16)
+        ->  Seq Scan on payment_p2007_02  (cost=0.00..40.12 rows=2312 width=16)
+        ->  Seq Scan on payment_p2007_03  (cost=0.00..98.44 rows=5644 width=16)
+        ->  Seq Scan on payment_p2007_04  (cost=0.00..117.54 rows=6754 width=16)
+        ->  Seq Scan on payment_p2007_05  (cost=0.00..3.82 rows=182 width=15)
+        ->  Seq Scan on payment_p2007_06  (cost=0.00..23.60 rows=1360 width=22)
+  ->  Hash  (cost=14.99..14.99 rows=599 width=49)
+        ->  Seq Scan on customer  (cost=0.00..14.99 rows=599 width=49)
+(12 rows)
+
+dvdrental=#
